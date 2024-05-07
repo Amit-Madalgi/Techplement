@@ -3,7 +3,6 @@ import mysql.connector
 
 app = Flask(__name__, static_url_path='/static')
 
-# Configure MySQL connection
 db = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -13,13 +12,11 @@ db = mysql.connector.connect(
 
 @app.route('/')
 def index():
-    #return render_template('index.html')
     cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM quotes ORDER BY RAND() LIMIT 1")  # Adjust the limit as needed
+    cursor.execute("SELECT * FROM quotes ORDER BY RAND() LIMIT 1")
     random_quotes = cursor.fetchall()
     cursor.close()
 
-    # Render the template with both sets of quotes
     return render_template('index.html', random_quotes=random_quotes)
 
 @app.route('/search')

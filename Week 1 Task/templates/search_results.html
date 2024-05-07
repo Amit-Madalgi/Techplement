@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1 class="search-results-title">Search Results</h1>
+    <hr>
+    {% if results %}
+        <ul>
+            {% for quote in results %}
+                <li>{{ quote['quote'] }} - {{ quote['author'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No quotes found for the specified author.</p>
+    {% endif %}
+</body>
+</html>
